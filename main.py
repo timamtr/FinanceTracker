@@ -1,6 +1,6 @@
 from manager import FinanceManager
 
-
+#
 def main():
     qarzhy_esebi = FinanceManager()
 

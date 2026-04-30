@@ -1,5 +1,5 @@
 from models import Transaction
-from utils import log_areket  # Импортируем наш декоратор
+from utils import log_areket
 
 
 class FinanceManager:

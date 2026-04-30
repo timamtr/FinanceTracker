@@ -1,5 +1,5 @@
 from datetime import datetime
-
+#
 class Transaction:
     def __init__(self, amount, category, description, type_trans):
         self.amount = float(amount)
