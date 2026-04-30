@@ -1,10 +1,12 @@
 from models import Transaction
+from utils import log_areket  # Импортируем наш декоратор
 
 
 class FinanceManager:
     def __init__(self):
         self.transactions = []
 
+    @log_areket
     def add_transaction(self, amount, category, description, type_trans):
         new_transaction = Transaction(amount, category, description, type_trans)
         self.transactions.append(new_transaction)
