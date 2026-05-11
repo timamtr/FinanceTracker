@@ -1,6 +1,6 @@
 from manager import FinanceManager
 
-#
+
 def main():
     qarzhy_esebi = FinanceManager()
 
@@ -14,12 +14,20 @@ def main():
         tandau = input("Tandauynyzdy engiziniz (1-4): ")
 
         if tandau == '1':
-            somasi = input("Somani engiziniz (например, 5000): ")
-            sanaty = input("Sanatyn engiziniz (например, Tamaq, Zhol): ")
-            sipattamasy = input("Sipattamasyn engiziniz (Описание): ")
-            turi = input("Turin engiziniz (Income или Expense): ")
+            try:
+                somasi = float(input("Somani engiziniz (например, 5000): "))
+                sanaty = input("Sanatyn engiziniz (например, Tamaq, Zhol): ")
+                sipattamasy = input("Sipattamasyn engiziniz (Описание): ")
+                turi = input("Turin engiziniz (Income или Expense): ")
 
-            qarzhy_esebi.add_transaction(somasi, sanaty, sipattamasy, turi)
+                if turi not in ['Income', 'Expense']:
+                    print("Qate! Тип должен быть ровно 'Income' или 'Expense'. Транзакция отменена.")
+                    continue
+
+                qarzhy_esebi.add_transaction(somasi, sanaty, sipattamasy, turi)
+
+            except ValueError:
+                print("Qate! Сумма должна быть числом. Попробуйте еще раз.")
 
         elif tandau == '2':
             print("\n--- Barlyq tranzakciyalar ---")
