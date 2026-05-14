@@ -4,8 +4,11 @@ from manager import FinanceManager
 def main():
     qarzhy_esebi = FinanceManager()
 
+    # --- НОВОЕ: Загружаем данные из файла при старте ---
+    qarzhy_esebi.load_from_json('data.json')
+
     while True:
-        print("\n=== Personal Finance Tracker ===")
+        print("\n=== Personal Finance Tracker (Week 4: JSON) ===")
         print("1. Tranzakciya qosu (Добавить)")
         print("2. Tranzakciyalardy koru (Посмотреть все)")
         print("3. Balancety esepteu (Баланс)")
@@ -15,34 +18,34 @@ def main():
 
         if tandau == '1':
             try:
-                somasi = float(input("Somani engiziniz (например, 5000): "))
-                sanaty = input("Sanatyn engiziniz (например, Tamaq, Zhol): ")
-                sipattamasy = input("Sipattamasyn engiziniz (Описание): ")
-                turi = input("Turin engiziniz (Income или Expense): ")
+                somasi = float(input("Somani engiziniz: "))
+                sanaty = input("Sanatyn engiziniz: ")
+                sipattamasy = input("Sipattamasyn engiziniz: ")
+                turi = input("Turin engiziniz (Income/Expense): ")
 
                 if turi not in ['Income', 'Expense']:
-                    print("Qate! Тип должен быть ровно 'Income' или 'Expense'. Транзакция отменена.")
+                    print("Qate! Turin durys engiziniz.")
                     continue
 
                 qarzhy_esebi.add_transaction(somasi, sanaty, sipattamasy, turi)
-
             except ValueError:
-                print("Qate! Сумма должна быть числом. Попробуйте еще раз.")
+                print("Qate! Soma san boluy kerek.")
 
         elif tandau == '2':
-            print("\n--- Barlyq tranzakciyalar ---")
-            for barlyq_tr in qarzhy_esebi.get_all_transactions():
-                print(barlyq_tr)
+            transactions = qarzhy_esebi.get_all_transactions()
+            if not transactions:
+                print("\nТранзакций пока нет.")
+            else:
+                print("\n--- Barlyq tranzakciyalar ---")
+                for t in transactions:
+                    print(t)
 
         elif tandau == '3':
             print(f"\nQazirgi balance: {qarzhy_esebi.calculate_balance()} tg.")
 
         elif tandau == '4':
-            print("Kelesi kezdeskenshe!")
+            print("Saubolynyz!")
             break
-
-        else:
-            print("Qate tandau. 1 men 4 aralygynda san engiziniz.")
 
 
 if __name__ == '__main__':
