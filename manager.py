@@ -42,3 +42,7 @@ class FinanceManager:
                     self.transactions.append(t)
         except (FileNotFoundError, json.JSONDecodeError):
             self.transactions = []
+
+    def filter_by_category(self, category_name):
+        filtered_list = [t for t in self.transactions if t.category.lower() == category_name.lower()]
+        return filtered_list

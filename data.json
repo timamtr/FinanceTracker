@@ -5,5 +5,19 @@
         "description": "Income",
         "type": "Income",
         "date": "2026-05-14 09:34:34"
+    },
+    {
+        "amount": 2000.0,
+        "category": "Tamaq",
+        "description": "plov zhane tea",
+        "type": "Expense",
+        "date": "2026-05-17 17:27:41"
+    },
+    {
+        "amount": 1500.0,
+        "category": "Taxi",
+        "description": "Uiden sabaqqa",
+        "type": "Expense",
+        "date": "2026-05-17 17:28:15"
     }
 ]

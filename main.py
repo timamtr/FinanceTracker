@@ -4,17 +4,18 @@ from manager import FinanceManager
 def main():
     qarzhy_esebi = FinanceManager()
 
-    # --- НОВОЕ: Загружаем данные из файла при старте ---
+
     qarzhy_esebi.load_from_json('data.json')
 
     while True:
-        print("\n=== Personal Finance Tracker (Week 4: JSON) ===")
+        print("\n=== Personal Finance Tracker (FINAL) ===")
         print("1. Tranzakciya qosu (Добавить)")
         print("2. Tranzakciyalardy koru (Посмотреть все)")
         print("3. Balancety esepteu (Баланс)")
-        print("4. Shygu (Выход)")
+        print("4. Sanat boyinsha izdeu (Фильтр по категории)")
+        print("5. Shygu (Выход)")
 
-        tandau = input("Tandauynyzdy engiziniz (1-4): ")
+        tandau = input("Tandauynyzdy engiziniz (1-5): ")
 
         if tandau == '1':
             try:
@@ -44,8 +45,22 @@ def main():
             print(f"\nQazirgi balance: {qarzhy_esebi.calculate_balance()} tg.")
 
         elif tandau == '4':
-            print("Saubolynyz!")
+            izdew = input("Qanday sanatty izdeysiz? (Введите категорию для поиска): ")
+            natije = qarzhy_esebi.filter_by_category(izdew)
+
+            if not natije:
+                print(f"\n'{izdew}' sanatynda tranzakciyalar tabylmady.")
+            else:
+                print(f"\n--- '{izdew}' sanatynyn tranzakciyalary ---")
+                for t in natije:
+                    print(t)
+
+        elif tandau == '5':
+            print("Saubolynyz! Проект успешно завершен!")
             break
+
+        else:
+            print("Qate tandau. 1 men 5 aralygynda san engiziniz.")
 
 
 if __name__ == '__main__':
